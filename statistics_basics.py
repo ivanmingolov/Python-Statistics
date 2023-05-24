@@ -1,6 +1,4 @@
-import sys
 import math
-import numpy
 from functools import reduce
 
 # Mean : Average of the data set
@@ -36,7 +34,10 @@ def variance(*args):
 def standard_deviation(*args):
     return math.sqrt(variance(*args))
 
-# Coefficient of variation
+# Coefficient of variation : Used to compare different data sets
+def coefficient_of_variation(*args):
+    return standard_deviation(*args) / mean(*args)
+
 
 # Covariance
 
@@ -54,3 +55,10 @@ print (f'Mode of [1, 2, 3, 4, 5, 5, 4] is {mode(1, 2, 3, 4, 5, 5, 4)}')
 print (f'Variance of [4, 6, 3, 5, 2] is {variance(4, 6, 3, 5, 2)}')
 
 print (f'Standard deviation of [4, 6, 3, 5, 2] is {standard_deviation(4, 6, 3, 5, 2)}')
+
+coefficient_of_variation_miles = coefficient_of_variation(3, 4, 4.5, 3.5)
+coefficient_of_variation_kilometers = coefficient_of_variation(4.828, 6.437, 7.242, 5.632)
+
+print(f"Coefficient of Variation (miles): {coefficient_of_variation_miles}")
+print(f'Coefficient of Variation (kilometers): {coefficient_of_variation_kilometers}')
+print(f'Compare if the values are close: {math.isclose(coefficient_of_variation_miles, coefficient_of_variation_kilometers, rel_tol= 1 ** -6, abs_tol= 1 ** -6)}')
