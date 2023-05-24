@@ -15,7 +15,7 @@ def median(*args):
     if len(args) % 2 == 1: # length is odd
         i = round(len(args) / 2)
         return args[i]
-    else: # length is odd
+    else: # length is even
         i = round((len(args) + 1) / 2)
         j = i - 1
         return (args[i] + args[j]) / 2
