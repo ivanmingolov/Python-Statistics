@@ -1,5 +1,7 @@
+import sys
 import math
 import numpy
+from functools import reduce
 
 # Mean
 def mean(*args):
@@ -24,6 +26,11 @@ def mode(*args):
     return max_values
 
 # Variance
+def variance(*args):
+    mean_value = mean(*args)
+    difference_to_mean_squared = list(map(lambda x : (x - mean_value) ** 2, args)) # map to every element the difference to the mean and squared it
+    variance_value = reduce(lambda x, y : x + y, difference_to_mean_squared) / (len(args) - 1) # sum all difference_to_mean_squared divided by the length - 1
+    return variance_value
 
 # Standard deviation
 
@@ -42,3 +49,5 @@ print (f'Median of [1, 2, 3, 4, 5] is {median(1, 2, 3, 4, 5)}')
 print (f'Median of [1, 2, 3, 4, 5, 6] is {median(1, 2, 3, 4, 5, 6)}')
 
 print (f'Mode of [1, 2, 3, 4, 5, 5, 4] is {mode(1, 2, 3, 4, 5, 5, 4)}')
+
+print (f'Variance of [4, 6, 3, 5, 2] is {variance(4, 6, 3, 5, 2)}')
