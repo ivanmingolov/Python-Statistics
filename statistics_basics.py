@@ -53,6 +53,7 @@ def covariance(x, y):
 def correlation_coefficient(x, y):
     return covariance(x, y) / (standard_deviation(*x) * standard_deviation(*y))
 
+
 # Main
 print(f'Mean of [1, 2, 3, 4, 5] is {mean(1, 2, 3, 4, 5)}')
 
