@@ -27,7 +27,7 @@ def mode(*args):
 def variance(*args):
     mean_value = mean(*args)
     difference_to_mean_squared = list(map(lambda x : (x - mean_value) ** 2, args)) # map to every element the difference to the mean and squared it
-    variance_value = reduce(lambda x, y : x + y, difference_to_mean_squared) / (len(args) - 1) # sum all difference_to_mean_squared values and divides by the length - 1
+    variance_value = sum(difference_to_mean_squared) / (len(args) - 1) # sum all difference_to_mean_squared values and divides by the length - 1
     return variance_value
 
 # Standard deviation : Square root of the variance, because variance gives extra weight to outliers because of the squared values
@@ -39,7 +39,15 @@ def coefficient_of_variation(*args):
     return standard_deviation(*args) / mean(*args)
 
 
-# Covariance
+# Covariance : Tells us if two values are moving in the same direction
+# Constraint : the lists should be of the same size
+def covariance(first_list, second_list):
+    mean_fist_list = mean(*first_list)
+    mean_second_list = mean(*second_list)
+    difference_to_mean_first_list = list(map(lambda x : x - mean_fist_list, first_list))
+    difference_to_mean_second_list = list(map(lambda y : y - mean_second_list, second_list))
+    products = [i * j for i, j in zip(difference_to_mean_first_list, difference_to_mean_second_list)]
+    return sum(products) / (len(first_list) - 1)
 
 # Correlation coefficient
 
@@ -62,3 +70,7 @@ coefficient_of_variation_kilometers = coefficient_of_variation(4.828, 6.437, 7.2
 print(f"Coefficient of Variation (miles): {coefficient_of_variation_miles}")
 print(f'Coefficient of Variation (kilometers): {coefficient_of_variation_kilometers}')
 print(f'Compare if the values are close: {math.isclose(coefficient_of_variation_miles, coefficient_of_variation_kilometers, rel_tol= 1 ** -6, abs_tol= 1 ** -6)}')
+
+market_cap_values = [1532, 1488, 1343, 928, 615]
+earnings_values = [58, 35, 75, 41, 17]
+print(f'Covariance of {market_cap_values} and {earnings_values} is {covariance(market_cap_values, earnings_values):.1f}')
