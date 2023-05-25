@@ -41,16 +41,17 @@ def coefficient_of_variation(*args):
 
 # Covariance : Tells us if two values are moving in the same direction
 # Constraint : the lists should be of the same size
-def covariance(first_list, second_list):
-    mean_fist_list = mean(*first_list)
-    mean_second_list = mean(*second_list)
-    difference_to_mean_first_list = list(map(lambda x : x - mean_fist_list, first_list))
-    difference_to_mean_second_list = list(map(lambda y : y - mean_second_list, second_list))
+def covariance(x, y):
+    mean_fist_list = mean(*x)
+    mean_second_list = mean(*y)
+    difference_to_mean_first_list = list(map(lambda x : x - mean_fist_list, x))
+    difference_to_mean_second_list = list(map(lambda y : y - mean_second_list, y))
     products = [i * j for i, j in zip(difference_to_mean_first_list, difference_to_mean_second_list)]
-    return sum(products) / (len(first_list) - 1)
+    return sum(products) / (len(x) - 1)
 
-# Correlation coefficient
-
+# Correlation coefficient : Adjust covariance to see relationships
+def correlation_coefficient(x, y):
+    return covariance(x, y) / (standard_deviation(*x) * standard_deviation(*y))
 
 # Main
 print(f'Mean of [1, 2, 3, 4, 5] is {mean(1, 2, 3, 4, 5)}')
@@ -73,4 +74,6 @@ print(f'Compare if the values are close: {math.isclose(coefficient_of_variation_
 
 market_cap_values = [1532, 1488, 1343, 928, 615]
 earnings_values = [58, 35, 75, 41, 17]
-print(f'Covariance of {market_cap_values} and {earnings_values} is {covariance(market_cap_values, earnings_values):.1f}')
+print(f'Covariance of {market_cap_values} and {earnings_values} is {covariance(market_cap_values, earnings_values):.1f} and should be 5803.2')
+
+print(f'Correlation coefficient of {market_cap_values} and {earnings_values} is {correlation_coefficient(market_cap_values, earnings_values):.4f} and should be 0.6601')
