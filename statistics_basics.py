@@ -53,28 +53,27 @@ def covariance(x, y):
 def correlation_coefficient(x, y):
     return covariance(x, y) / (standard_deviation(*x) * standard_deviation(*y))
 
+if __name__ == '__main__':
+    print(f'Mean of [1, 2, 3, 4, 5] is {mean(1, 2, 3, 4, 5)}')
 
-# Main
-print(f'Mean of [1, 2, 3, 4, 5] is {mean(1, 2, 3, 4, 5)}')
+    print (f'Median of [1, 2, 3, 4, 5] is {median(1, 2, 3, 4, 5)}')
+    print (f'Median of [1, 2, 3, 4, 5, 6] is {median(1, 2, 3, 4, 5, 6)}')
 
-print (f'Median of [1, 2, 3, 4, 5] is {median(1, 2, 3, 4, 5)}')
-print (f'Median of [1, 2, 3, 4, 5, 6] is {median(1, 2, 3, 4, 5, 6)}')
+    print (f'Mode of [1, 2, 3, 4, 5, 5, 4] is {mode(1, 2, 3, 4, 5, 5, 4)}')
 
-print (f'Mode of [1, 2, 3, 4, 5, 5, 4] is {mode(1, 2, 3, 4, 5, 5, 4)}')
+    print (f'Variance of [4, 6, 3, 5, 2] is {variance(4, 6, 3, 5, 2)}')
 
-print (f'Variance of [4, 6, 3, 5, 2] is {variance(4, 6, 3, 5, 2)}')
+    print (f'Standard deviation of [4, 6, 3, 5, 2] is {standard_deviation(4, 6, 3, 5, 2)}')
 
-print (f'Standard deviation of [4, 6, 3, 5, 2] is {standard_deviation(4, 6, 3, 5, 2)}')
+    coefficient_of_variation_miles = coefficient_of_variation(3, 4, 4.5, 3.5)
+    coefficient_of_variation_kilometers = coefficient_of_variation(4.828, 6.437, 7.242, 5.632)
 
-coefficient_of_variation_miles = coefficient_of_variation(3, 4, 4.5, 3.5)
-coefficient_of_variation_kilometers = coefficient_of_variation(4.828, 6.437, 7.242, 5.632)
+    print(f"Coefficient of Variation (miles): {coefficient_of_variation_miles}")
+    print(f'Coefficient of Variation (kilometers): {coefficient_of_variation_kilometers}')
+    print(f'Compare if the values are close: {math.isclose(coefficient_of_variation_miles, coefficient_of_variation_kilometers, rel_tol= 1 ** -6, abs_tol= 1 ** -6)}')
 
-print(f"Coefficient of Variation (miles): {coefficient_of_variation_miles}")
-print(f'Coefficient of Variation (kilometers): {coefficient_of_variation_kilometers}')
-print(f'Compare if the values are close: {math.isclose(coefficient_of_variation_miles, coefficient_of_variation_kilometers, rel_tol= 1 ** -6, abs_tol= 1 ** -6)}')
+    market_cap_values = [1532, 1488, 1343, 928, 615]
+    earnings_values = [58, 35, 75, 41, 17]
+    print(f'Covariance of {market_cap_values} and {earnings_values} is {covariance(market_cap_values, earnings_values):.1f} and should be 5803.2')
 
-market_cap_values = [1532, 1488, 1343, 928, 615]
-earnings_values = [58, 35, 75, 41, 17]
-print(f'Covariance of {market_cap_values} and {earnings_values} is {covariance(market_cap_values, earnings_values):.1f} and should be 5803.2')
-
-print(f'Correlation coefficient of {market_cap_values} and {earnings_values} is {correlation_coefficient(market_cap_values, earnings_values):.4f} and should be 0.6601')
+    print(f'Correlation coefficient of {market_cap_values} and {earnings_values} is {correlation_coefficient(market_cap_values, earnings_values):.4f} and should be 0.6601')
